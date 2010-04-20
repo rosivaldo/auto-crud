@@ -1,0 +1,21 @@
+auto-crud
+~~~~~~~~~
+
+what
+~~~~~~~~~
+A simple PHP CRUD system.
+As defined by wikipedia:
+Create, read, update and delete (CRUD) are the four basic functions of persistent storage. 
+http://en.wikipedia.org/wiki/CRUD_(acronym)
+
+why
+~~~~~~~~~
+Just because I needed a system like that, and didn't want to use a existing one.
+
+how
+~~~~~~~~~
+It's all based on PHP and XML files for persist the configuration.
+
+authors
+~~~~~~~~~
+Rosivaldo Ramalho (rosivaldo {at} gmail.com)
