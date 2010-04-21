@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class mysqlClass</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class mysqlClass</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Generic database class</p>
+<p class="description"><p>File: dbClass.php  Created: 10-04-20  $LastModified: Qua 21 Abr 2010 17:29:28 BRT</p><p>See the enclosed file LICENSE for license information (GPL). If you  did not receive this file, see http://www.gnu.org/licenses/gpl.txt.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Rosivaldo Ramalho &lt;<a href="mailto:rosivaldo">{at</a> gmail.com rosivaldo {at} gmail.com}&gt;</li>
+				<li><span class="field">version:</span> </li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_db---mysqlClass.php.html">/db/mysqlClass.php</a> (line <span class="field">21</span>)
+		</p>
+		
+				
+		<pre><a href="../db/dbClass.html">dbClass</a>
+   |
+   --mysqlClass</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																												
+												<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#doConnect" title="details" class="method-name">doConnect</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getFields" title="details" class="method-name">getFields</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$table</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getTables" title="details" class="method-name">getTables</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#loadFields" title="details" class="method-name">loadFields</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$table</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#loadTables" title="details" class="method-name">loadTables</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+										<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../db/dbClass.html">dbClass</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../db/dbClass.html#var$conn">dbClass::$conn</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../db/dbClass.html#var$db">dbClass::$db</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../db/dbClass.html#var$host">dbClass::$host</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../db/dbClass.html#var$pass">dbClass::$pass</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../db/dbClass.html#var$port">dbClass::$port</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../db/dbClass.html#var$tables">dbClass::$tables</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../db/dbClass.html#var$user">dbClass::$user</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methoddoConnect" id="doConnect"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">doConnect</span> (line <span class="line-number">23</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			doConnect
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../db/dbClass.html#methoddoConnect">dbClass::doConnect()</a></dt>
+					</dl>
+			
+	</div>
+<a name="methodgetFields" id="getFields"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFields</span> (line <span class="line-number">54</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getFields
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$table</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$table</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../db/dbClass.html#methodgetFields">dbClass::getFields()</a></dt>
+					</dl>
+			
+	</div>
+<a name="methodgetTables" id="getTables"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getTables</span> (line <span class="line-number">49</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getTables
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../db/dbClass.html#methodgetTables">dbClass::getTables()</a></dt>
+					</dl>
+			
+	</div>
+<a name="methodloadFields" id="loadFields"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">loadFields</span> (line <span class="line-number">60</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			loadFields
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$table</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$table</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../db/dbClass.html#methodloadFields">dbClass::loadFields()</a></dt>
+					</dl>
+			
+	</div>
+<a name="methodloadTables" id="loadTables"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">loadTables</span> (line <span class="line-number">34</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			loadTables
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../db/dbClass.html#methodloadTables">dbClass::loadTables()</a></dt>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../db/dbClass.html">dbClass</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../db/dbClass.html#method__construct">dbClass::__construct()</a></span><br>
+													<span class="method-name"><a href="../db/dbClass.html#methoddoConnect">dbClass::doConnect()</a></span><br>
+													<span class="method-name"><a href="../db/dbClass.html#methodgetFields">dbClass::getFields()</a></span><br>
+													<span class="method-name"><a href="../db/dbClass.html#methodgetTables">dbClass::getTables()</a></span><br>
+													<span class="method-name"><a href="../db/dbClass.html#methodloadFields">dbClass::loadFields()</a></span><br>
+													<span class="method-name"><a href="../db/dbClass.html#methodloadTables">dbClass::loadTables()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 21 Apr 2010 18:13:46 -0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

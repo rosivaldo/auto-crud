@@ -1,6 +1,24 @@
 <?php
+/**
+ *
+ * Main index file
+ *
+ * File: index.php
+ * Created: 10-04-20
+ * $LastModified: Qua 21 Abr 2010 18:39:21 BRT
+ *
+ * See the enclosed file LICENSE for license information (GPL). If you
+ * did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
+ *
+ * @author  Rosivaldo Ramalho <rosivaldo {at} gmail.com>
+ * @package main
+ * @version 0.0.0.1-alpha
+ * 
+ */
+
 	session_start();
 	require_once 'common/config.php';
+	require_once 'db/dbFactory.php';
 
 	# sets default language
 	$lang = DEFAULT_LANG;
@@ -33,8 +51,7 @@
 		$dbDb = $_SESSION['dbDb'];
 		$dbPort = $_SESSION['dbPort'];
 
-	    	require_once 'db/mysql.php';
-		getDbTables();
+	    	$mydb = dbFacede::getDb('mysql', '127.0.0.1', '3306', 'root', 'monetize', '123');
 
 	} else {
 		$myHeader = str_replace('{pagetitle}', $resource['title-index-nosession'], $myHeader);

@@ -1,4 +1,21 @@
 <?php
+/**
+ *
+ * MySQL Class
+ *
+ * File: mysqlClass.php
+ * Created: 10-04-20
+ * $LastModified: Qua 21 Abr 2010 18:37:46 BRT
+ *
+ * See the enclosed file LICENSE for license information (GPL). If you
+ * did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
+ *
+ * @author  Rosivaldo Ramalho <rosivaldo {at} gmail.com>
+ * @package db
+ * @version 0.0.0.1-alpha
+ * 
+ */
+
 	require_once 'dbClass.php';
 
 	class mysqlClass extends dbClass {

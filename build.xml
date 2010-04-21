@@ -4,6 +4,7 @@
   <target name="init">
     <tstamp/>
     <mkdir dir="${output.dir}"/>
+    <mkdir dir="${logs.dir}"/>
   </target>
   <target name="all" description="Build the project">
     <antcall target="init"/>
@@ -26,6 +27,12 @@
     </copy>
   </target>
   <target name="compile">
+    <!-- <replaceregexp match="\$version\$" replace="${version}" flags="g" byline="true" file="${source.dir}/common/config.php" /> -->
+    <replaceregexp flags="g" byline="true" match="${version.old}" replace="${version.new}">
+      <fileset dir="${source.dir}">
+        <include name="**/*.php"/>
+      </fileset>
+    </replaceregexp>
     <apply executable="/usr/bin/php" failonerror="true" taskname="php-compile">
       <arg value="-l"/>
       <fileset dir="${source.dir}">
@@ -39,6 +46,11 @@
       		 --coverage-clover ${logs.dir}/clover.xml
 		 --coverage-html ${logs.dir}/coverage
 		 mysqlClassTest" />
+    </exec>
+  </target>
+  <target name="docs">
+    <exec dir="." executable="/usr/bin/phpdoc" failonerror="true" taskname="phpdocs">
+      <arg line="-q -ct type -ue off -t ${docs.dir} -o HTML:frames:default -d ${source.dir} -ti auto-crud" />
     </exec>
   </target>
 </project>
