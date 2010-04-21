@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="auto-crud" default="all" basedir=".">
+  <property file="build.properties"/>
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${output.dir}"/>
+  </target>
+  <target name="all" description="Build the project">
+    <antcall target="init"/>
+    <antcall target="compile"/>
+    <antcall target="clean"/>
+    <antcall target="copy"/>
+  </target>
+  <target name="clean" description="Clean the project">
+    <delete includeemptydirs="true" quiet="true">
+      <fileset dir="${output.dir}" includes="**/*"/>
+    </delete>
+  </target>
+  <target name="copy">
+    <copy todir="${output.dir}" overwrite="yes" includeemptydirs="true">
+      <fileset dir="${source.dir}">
+        <exclude name="**/.git"/>
+        <exclude name="**/.git/**"/>
+        <exclude name="**/*.swp"/>
+      </fileset>
+    </copy>
+  </target>
+  <target name="compile">
+    <apply executable="/usr/bin/php" failonerror="true" taskname="php-compile">
+      <arg value="-l"/>
+      <fileset dir="${source.dir}">
+        <include name="**/*.php"/>
+      </fileset>
+    </apply>
+  </target>
+  <target name="tests">
+    <exec dir="${test.dir}" executable="/usr/bin/phpunit" failonerror="true" taskname="phpunit">
+      <arg line="--log-metrics ${logs.dir}/metrics.xml
+      		 --coverage-clover ${logs.dir}/clover.xml
+		 --coverage-html ${logs.dir}/coverage
+		 mysqlClassTest" />
+    </exec>
+  </target>
+</project>
