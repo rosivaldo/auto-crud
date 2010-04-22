@@ -5,7 +5,7 @@
  *
  * File: mysqlClass.php
  * Created: 10-04-20
- * $LastModified: Qua 21 Abr 2010 18:37:46 BRT
+ * $LastModified: Qui 22 Abr 2010 14:20:52 BRT
  *
  * See the enclosed file LICENSE for license information (GPL). If you
  * did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
@@ -24,18 +24,51 @@
 			$this->conn = mysql_pconnect($this->host . ':' . $this->port, 
 						     $this->user, 
 						     $this->pass);
-			if ( ! $this->conn) 
-				throw new Exception('Connection not initialized');
-			else
+			if ( ! $this->conn) {
+				$this->setError(mysql_error());
+				throw new Exception('Connection not initialized. Error:' . $this->getError());
+			}
+			else {
+				$this->setError('');
 				mysql_select_db($this->db, $this->conn);
+			}
+		}
+
+		protected function doQuery($sql) {
+			if ($this->hasError())
+				return false;
+			else {
+				if ( ! isset($this->conn))
+					$this->doConnect();
+				$handler = mysql_query($sql, $this->conn);
+				if ( ! $handler) {
+					$this->setError(mysql_error());
+					return false;
+				} else {
+					$this->setError('');
+					return $handler;
+				}
+			}
+		}
+
+		protected function setError($text) {
+			$this->error = $text;
+		}
+
+		public function getError() {
+			return $this->error;
+		}
+
+		public function hasError() {
+			return ($this->error != '');
 		}
 
 		# TODO add a refresh flag, so if the array is completed there won't be necessary to retrieve data again
 		public function loadTables() {
-			if ( ! isset($this->conn))
-				$this->doConnect();
+			$qryHandler = $this->doQuery("show tables");
+			if ($this->hasError())
+				throw new Exception($this->getError());
 
-			$qryHandler = mysql_query("show tables", $this->conn);
 			if (mysql_num_rows($qryHandler) > 0) {
 				if (!empty($this->tables))
 					unset($this->tables);
@@ -58,9 +91,10 @@
 
 		# TODO add a refresh flag, so if the array is completed there won't be necessary to retrieve data again
 		public function loadFields($table) {
-			if ( ! isset($this->conn))
-				$this->doConnect();
-			$qryHandler = mysql_query("show columns from " . $table, $this->conn);
+			$qryHandler = $this->doQuery("show columns from " . $table);
+			if ($this->hasError())
+				throw new Exception($this->getError());
+
 			if (mysql_num_rows($qryHandler) > 0) {
 				if (!empty($this->tables[$table]))
 					unset($this->tables[$table]);

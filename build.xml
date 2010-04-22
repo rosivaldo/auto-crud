@@ -50,7 +50,7 @@
   </target>
   <target name="docs">
     <exec dir="." executable="/usr/bin/phpdoc" failonerror="true" taskname="phpdocs">
-      <arg line="-q -ct type -ue off -t ${docs.dir} -o HTML:frames:default -d ${source.dir} -ti auto-crud" />
+      <arg line="-q -ct type -ue off -t ${docs.dir} -o HTML:Smarty:PHP -d ${source.dir} -ti auto-crud" />
     </exec>
   </target>
 </project>

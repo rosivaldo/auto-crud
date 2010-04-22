@@ -5,7 +5,7 @@
  *
  * File: config.php
  * Created: 10-04-20
- * $LastModified: Qua 21 Abr 2010 18:34:05 BRT
+ * $LastModified: Qui 22 Abr 2010 14:32:12 BRT
  *
  * See the enclosed file LICENSE for license information (GPL). If you
  * did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
@@ -32,6 +32,11 @@
 		<title>auto-crud | {pagetitle}</title>
 		<link type="text/css" rel="stylesheet" href="css/style.css" />
 	</head>
+	<body>
+	<div id="header">
+		<a img src="images/auto-crud.png" alt="auto-crud" />
+		<a href="logout.php">Restart</a>
+	</div>
 MYHEADER;
 
 	$myFooter = <<<MYFOOTER

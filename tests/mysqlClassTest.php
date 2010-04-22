@@ -6,7 +6,7 @@
 	class mysqlClassTest extends PHPUnit_Framework_TestCase {
 		public function testLoad() {
 			$type = 'mysql';
-			$obj = dbFactory::getDb($type, '127.0.0.1', '3306', 'sometest', 'root', '123');
+			$obj = dbFactory::getDb($type, '127.0.0.1', '3306', 'test', 'root', '123');
 			$myTables = $obj->getTables();
 			$this->assertFalse(empty($myTables));
 			$myFields = $obj->getFields($myTables[1]);

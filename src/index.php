@@ -5,7 +5,7 @@
  *
  * File: index.php
  * Created: 10-04-20
- * $LastModified: Qua 21 Abr 2010 18:39:21 BRT
+ * $LastModified: Qui 22 Abr 2010 14:45:03 BRT
  *
  * See the enclosed file LICENSE for license information (GPL). If you
  * did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
@@ -43,7 +43,6 @@
 	    isset($_SESSION['dbHost']) &&
 	    isset($_SESSION['dbDb']) &&
 	    isset($_SESSION['dbPort'])) {
-		echo 'session started';
 		$dbType = $_SESSION['dbType'];
 		$dbUser = $_SESSION['dbUser'];
 		$dbPass = $_SESSION['dbPass'];
@@ -51,8 +50,16 @@
 		$dbDb = $_SESSION['dbDb'];
 		$dbPort = $_SESSION['dbPort'];
 
-	    	$mydb = dbFacede::getDb('mysql', '127.0.0.1', '3306', 'root', 'monetize', '123');
-
+		echo $myHeader;
+		try {
+		    	$mydb = dbFactory::getDb($dbType, $dbHost, $dbPort, $dbDb, $dbUser, $dbPass);
+			$tables = $mydb->getTables();
+			foreach ($tables as $table) {
+				echo '<a href="showfields.php?table=' . $table . '">' . $table . '</a>';
+			}
+		} catch (Exception $e) {
+			echo '<div class="msg_error">' . $e->getMessage() . '</div>';
+		}
 	} else {
 		$myHeader = str_replace('{pagetitle}', $resource['title-index-nosession'], $myHeader);
 		echo $myHeader;
@@ -70,7 +77,7 @@
 		echo '<label for="database_port">' . $resource['port'] . '</label>';
 		echo '<input type="text" name="database_port" id="database_port" value="3306"/><br />';
 		echo '<label for="database_db">' . $resource['database'] . '</label>';
-		echo '<input type="text" name="database_db" maxlength="8" id="database_db"/><br />';
+		echo '<input type="text" name="database_db" id="database_db"/><br />';
 		echo '<input type="submit" />';
 		echo '<input type="reset" />';
 		echo '</form>';
