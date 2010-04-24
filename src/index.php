@@ -4,8 +4,10 @@
  * Main index file
  *
  * File: index.php
+ *
  * Created: 10-04-20
- * $LastModified: Qui 22 Abr 2010 14:45:03 BRT
+ *
+ * $LastModified: Sex 23 Abr 2010 20:22:33 BRT
  *
  * See the enclosed file LICENSE for license information (GPL). If you
  * did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
@@ -16,26 +18,7 @@
  * 
  */
 
-	session_start();
-	require_once 'common/config.php';
-	require_once 'db/dbFactory.php';
-
-	# sets default language
-	$lang = DEFAULT_LANG;
-
-	# checks if browser sets language
-	# if it does, check if it exists
-	# otherwise, set to default
-	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-		$lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-		$lang = strtolower($lang);
-		$lang = substr($lang, 0, strpos($lang, ','));
-		$lang = ( (in_array($lang, $langs)) ? $lang : DEFAULT_LANG );
-	}
-
-	# loads lang file
-	# a file for a language, for better performance
-	require_once 'common/langs/lang.' . $lang . '.php';
+	require_once 'controller.php';
 
 	if (isset($_SESSION['dbType']) && 
 	    isset($_SESSION['dbUser']) &&
@@ -43,6 +26,7 @@
 	    isset($_SESSION['dbHost']) &&
 	    isset($_SESSION['dbDb']) &&
 	    isset($_SESSION['dbPort'])) {
+
 		$dbType = $_SESSION['dbType'];
 		$dbUser = $_SESSION['dbUser'];
 		$dbPass = $_SESSION['dbPass'];
@@ -50,40 +34,37 @@
 		$dbDb = $_SESSION['dbDb'];
 		$dbPort = $_SESSION['dbPort'];
 
-		echo $myHeader;
 		try {
-		    	$mydb = dbFactory::getDb($dbType, $dbHost, $dbPort, $dbDb, $dbUser, $dbPass);
-			$tables = $mydb->getTables();
-			foreach ($tables as $table) {
-				echo '<a href="showfields.php?table=' . $table . '">' . $table . '</a>';
-			}
+			$mydb = dbFactory::getDb($dbType, $dbHost, $dbPort, $dbDb, $dbUser, $dbPass);
+			$_SESSION['mydb'] = $mydb;
 		} catch (Exception $e) {
-			echo '<div class="msg_error">' . $e->getMessage() . '</div>';
+			$pageTitle = $resource['title-index-nosession'];
+			$myContent .= '<div class="msg_error">' . $e->getMessage() . '</div>';
+			require_once 'template.php';
 		}
+		header('Location: tables.php');
 	} else {
-		$myHeader = str_replace('{pagetitle}', $resource['title-index-nosession'], $myHeader);
-		echo $myHeader;
-		echo '<div id="content">';
-		echo '<h1>' . $resource['title-index-nosession'] . '</h1>';
-		echo '<form action="actions/do_index.php" method="post">';
-		echo '<label for="database_type">' . $resource['database-type'] . '</label>';
-		echo '<input type="text" name="database_type" maxlength="8" id="database_type" value="mysql"/><br />';
-		echo '<label for="database_user">' . $resource['username'] . '</label>';
-		echo '<input type="text" name="database_user" id="database_user"/><br />';
-		echo '<label for="database_pass">' . $resource['password'] . '</label>';
-		echo '<input type="text" name="database_pass" id="database_pass"/><br />';
-		echo '<label for="database_host">' . $resource['hostname'] . '</label>';
-		echo '<input type="text" name="database_host" id="database_host"/><br />';
-		echo '<label for="database_port">' . $resource['port'] . '</label>';
-		echo '<input type="text" name="database_port" id="database_port" value="3306"/><br />';
-		echo '<label for="database_db">' . $resource['database'] . '</label>';
-		echo '<input type="text" name="database_db" id="database_db"/><br />';
-		echo '<input type="submit" />';
-		echo '<input type="reset" />';
-		echo '</form>';
-		echo '</div>';
+		$pageTitle = $resource['title-index-nosession'];
+
+		$myContent .= '<h1>' . $resource['title-index-nosession'] . '</h1>';
+		$myContent .= '<form action="actions/do_index.php" method="post">';
+		$myContent .= '<label for="database_type">' . $resource['database-type'] . '</label>';
+		$myContent .= '<input type="text" name="database_type" maxlength="8" id="database_type" value="mysql"/><br />';
+		$myContent .= '<label for="database_user">' . $resource['username'] . '</label>';
+		$myContent .= '<input type="text" name="database_user" id="database_user"/><br />';
+		$myContent .= '<label for="database_pass">' . $resource['password'] . '</label>';
+		$myContent .= '<input type="text" name="database_pass" id="database_pass"/><br />';
+		$myContent .= '<label for="database_host">' . $resource['hostname'] . '</label>';
+		$myContent .= '<input type="text" name="database_host" id="database_host"/><br />';
+		$myContent .= '<label for="database_port">' . $resource['port'] . '</label>';
+		$myContent .= '<input type="text" name="database_port" id="database_port" value="3306"/><br />';
+		$myContent .= '<label for="database_db">' . $resource['database'] . '</label>';
+		$myContent .= '<input type="text" name="database_db" id="database_db"/><br />';
+		$myContent .= '<input type="submit" />';
+		$myContent .= '<input type="reset" />';
+		$myContent .= '</form>';
+		$myContent .= '</div>';
+	
+		require_once 'template.php';
 	}
-	$myFooter = str_replace('{appname}', APPNAME, $myFooter);
-	$myFooter = str_replace('{version}', VERSION, $myFooter);
-	echo $myFooter;
 ?>

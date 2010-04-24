@@ -5,7 +5,7 @@
  *
  * File: mysqlClass.php
  * Created: 10-04-20
- * $LastModified: Qui 22 Abr 2010 14:20:52 BRT
+ * $LastModified: Sex 23 Abr 2010 21:07:13 BRT
  *
  * See the enclosed file LICENSE for license information (GPL). If you
  * did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
@@ -38,8 +38,7 @@
 			if ($this->hasError())
 				return false;
 			else {
-				if ( ! isset($this->conn))
-					$this->doConnect();
+				$this->doConnect();
 				$handler = mysql_query($sql, $this->conn);
 				if ( ! $handler) {
 					$this->setError(mysql_error());
