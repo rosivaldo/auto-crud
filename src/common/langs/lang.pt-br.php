@@ -5,7 +5,7 @@
  *
  * File: lang.pt-br.php
  * Created: 10-04-20
- * $LastModified: Sex 23 Abr 2010 20:57:45 BRT
+ * $LastModified: Seg 03 Mai 2010 21:07:07 BRT
  *
  * See the enclosed file LICENSE for license information (GPL). If you
  * did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
@@ -19,6 +19,8 @@
 	$resource = array(
 		'title-index-nosession' => 'Informações da conexão',
 		'title-index-session' => 'Tabelas existentes',
+		'list-tables' => 'Listar tabelas',
+		'process-tables' => 'Processar tabelas',
 		'error-in-session' => 'Opa! Existe erro na sua seção',
 		'fields-of-table' => 'Campos da tabela %s',
 		'clean-session' => 'Limpar sua sessão',

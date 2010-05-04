@@ -9,7 +9,7 @@
  *
  * Created: 10-04-23
  *
- * $LastModified: Sex 23 Abr 2010 20:14:29 BRT
+ * $LastModified: Seg 03 Mai 2010 20:29:02 BRT
  *
  * See the enclosed file LICENSE for license information (GPL). If you
  * did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
@@ -36,6 +36,7 @@
 		<div id="content">
 <?php echo $myContent; ?>
 		</div>
+		<br />
 		<div id="footer">
 <?php
 	echo "\t\t\t" . APPNAME . ' - ' . VERSION;

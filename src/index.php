@@ -7,12 +7,12 @@
  *
  * Created: 10-04-20
  *
- * $LastModified: Sex 23 Abr 2010 20:22:33 BRT
+ * $LastModified: Seg 03 Mai 2010 21:06:18 BRT
  *
  * See the enclosed file LICENSE for license information (GPL). If you
  * did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
  *
- * @author  Rosivaldo Ramalho <rosivaldo {at} gmail.com>
+ * @author  Rosivaldo Ramalho <rosivaldo_[at]_gmail.com>
  * @package main
  * @version 0.0.0.1-alpha
  * 
@@ -34,6 +34,7 @@
 		$dbDb = $_SESSION['dbDb'];
 		$dbPort = $_SESSION['dbPort'];
 
+		$pageTitle = $resource['title-index-session'];
 		try {
 			$mydb = dbFactory::getDb($dbType, $dbHost, $dbPort, $dbDb, $dbUser, $dbPass);
 			$_SESSION['mydb'] = $mydb;
@@ -42,7 +43,11 @@
 			$myContent .= '<div class="msg_error">' . $e->getMessage() . '</div>';
 			require_once 'template.php';
 		}
-		header('Location: tables.php');
+		$myContent .= '<h1>' . $pageTitle . '</h1>';
+		$myContent .= '<ul>';
+		$myContent .= '<li><a href="tables.php">' . $resource['list-tables'] . '</a></li>';
+		$myContent .= '<li><a href="process-tables.php">' . $resource['process-tables'] . '</a></li>';
+		$myContent .= '</ul>';
 	} else {
 		$pageTitle = $resource['title-index-nosession'];
 
@@ -65,6 +70,6 @@
 		$myContent .= '</form>';
 		$myContent .= '</div>';
 	
-		require_once 'template.php';
 	}
+	require_once 'template.php';
 ?>
